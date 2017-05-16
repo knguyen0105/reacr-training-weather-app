@@ -1,0 +1,67 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+#header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#main-input {
+  display: flex;
+  height: 500px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.city {
+  display: flex;
+}
+
+#main-input .city {  
+  flex-direction: column;
+}
+
+#forecast-container {
+  display: flex;  
+  max-width: 1200px;
+  flex-wrap: wrap;
+  justify-content: space-between;  
+  align-items: center;
+  margin: 50px auto;
+}
+
+.daily-forecast {
+  width: 300px;
+  height: 300px;
+  margin: 35px;
+  border: solid;
+}
+
+#forecast-city {
+  font-size: 65px;
+  text-align: center;
+}
