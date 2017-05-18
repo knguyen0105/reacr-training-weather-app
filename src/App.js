@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 var Forecast = require('./Forecast.js');
+var CityInput = require('./CityInput.js');
 var ReactRouter = require('react-router-dom');
 var Router = ReactRouter.BrowserRouter;
 var Route = ReactRouter.Route;
@@ -11,15 +12,6 @@ function Header(props) {
     <div id='header'>
       <h1>Clever Title </h1>
       <CityInput />
-    </div>
-  )
-}
-
-function CityInput(props) {
-  return (
-    <div className='city'>
-    <input type='text' placeholder='St. George, Utah' />
-    <button type='submit'>Get weather </button>
     </div>
   )
 }
