@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 var api = require('./utils/api');
+var qs = require('query-string');
+var moment = require('moment');
 
 class Forecast extends Component {
 
@@ -13,7 +15,8 @@ class Forecast extends Component {
     }
 
     componentDidMount() {
-        var city = 'Hanoi';
+        var city = qs.parse(this.props.location.search).city;
+        console.log(city);
         api.getFiveDaysForecast(city).then(function(data) {
             console.log(data);
           this.setState(function() {
@@ -40,13 +43,15 @@ class Forecast extends Component {
             <h1 id='forecast-city'>{city}</h1>
             <div id='forecast-container'>                
                 {forecast.map((day,index) => {
+                    const icon = require('./images/weather-icons/' + day.icon + '.svg');
+                    const date = moment().add(index, 'day').format('dddd, MMM D');
                     return (
                         <div key={index} className='daily-forecast'>
-                            <p>{day.main}</p>
+                            <img src={icon} alt={day.main} />
+                            <h2>{date}</h2>
                         </div>
                     )
-                })}
-                
+                })}                
             </div>
             </div>
         )
