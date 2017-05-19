@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 var api = require('./utils/api');
 var qs = require('query-string');
 var moment = require('moment');
@@ -10,8 +11,11 @@ class Forecast extends Component {
         this.state = {
             city: null,
             forecast: null, 
-            loading: true
+            loading: true,
+            
         }
+
+        this.handleClick = this.handleClick.bind(this);
     }
 
     componentDidMount() {
@@ -19,18 +23,27 @@ class Forecast extends Component {
         console.log(city);
         api.getFiveDaysForecast(city).then(function(data) {
             console.log(data);
-          this.setState(function() {
-              
+          this.setState(function() {              
               return {
                   city: city,
                   forecast: data,
-                  loading: false
+                  loading: false,
+                  
               }
           })  
         }.bind(this))
     }
 
+    handleClick(detail) {
+        console.log(detail);
+        this.props.history.push({
+            pathname: '/details/' + this.state.city,
+            state: detail
+        })
+  }
+
     render() {
+
         var city = this.state.city;
         var forecast = this.state.forecast;
         var loading = this.state.loading;
@@ -41,14 +54,16 @@ class Forecast extends Component {
         return (
             <div>                        
             <h1 id='forecast-city'>{city}</h1>
-            <div id='forecast-container'>                
+            <div id='forecast-container' >                
                 {forecast.map((day,index) => {
-                    const icon = require('./images/weather-icons/' + day.icon + '.svg');
-                    const date = moment().add(index, 'day').format('dddd, MMM D');
+                    const icon = require('./images/weather-icons/' + day.weather[0].icon + '.svg');                    
                     return (
-                        <div key={index} className='daily-forecast'>
-                            <img src={icon} alt={day.main} />
-                            <h2>{date}</h2>
+                        <div key={index} 
+                            className='daily-forecast' 
+                            onClick={this.handleClick.bind(this, day)}
+                        >
+                            <img className='weather-icon' src={icon} alt={day.weather[0].main} />
+                            <h2>{moment.unix(day.dt).format('dddd, MMM D')}</h2>
                         </div>
                     )
                 })}                

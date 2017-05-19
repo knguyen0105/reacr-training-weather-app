@@ -9,9 +9,9 @@ module.exports = {
         return axios.get('http://api.openweathermap.org/data/2.5/forecast/daily?q='+city+params+'&cnt=5')
                 .then(function(data) {
                     var list = data.data.list;                    
-                    var res  = list.map((item) => item.weather[0])
-                    console.log(res);
-                    return res;
+                    //var res  = list.map((item) => item.weather[0])
+                    //console.log(res);
+                    return list;
                 });
     }
 }

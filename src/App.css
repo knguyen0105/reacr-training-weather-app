@@ -73,6 +73,14 @@
   flex-direction: column
 }
 
-.daily-forecast img {
-  height: 130px;
+.weather-icon {
+  height: 135px;
+}
+
+#weather-detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
 }
